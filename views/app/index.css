@@ -1,0 +1,179 @@
+*{
+    box-sizing: border-box;
+}
+
+.contenedor-lista{
+    display: flex;
+    flex-direction: column;
+}
+
+ul{
+    margin-top: 0;
+}
+
+svg{
+    height: 1.5rem;
+}
+body{
+    background-color: #0f172a;
+    color: rgba(200,200,200,.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-size: 100%;
+    padding: 1rem;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+h1{
+font-size: 1.5rem;
+color: white;
+text-align: center;
+font-weight: 700;
+padding: 1rem;
+}
+
+h3{
+    text-align: center;
+    color: white;
+    margin: 5px;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+
+/* ID */
+#boton-crear{
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    padding: 1rem;
+    transition: 0.5s;
+}
+
+
+
+#formulario{
+    background-color: #1e293b;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+  #si-edit{
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    padding: 1rem;
+    transition: 0.5s;
+}
+
+
+#lista{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#contenedor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    background-color: #1F2833;
+    width: 100%;
+}
+
+
+#lapiz{
+    height: 2rem;
+}
+   /* CLASES */
+
+.input-edit{
+display: none;
+}
+.input-edita{
+    display: block;
+}
+.form-input{
+    display: flex;
+    flex-direction: column;
+}
+
+.input{
+    padding: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    outline: none;
+    background-color: #475569;
+    color: white;
+}
+
+.input-incorrecto{
+    color: red;
+    border-bottom: solid red;
+    
+}
+
+
+.input-correcto{
+    color: green;
+    border-bottom: solid green;
+    }
+
+.formato{
+display: none;
+}
+.formato-error{
+    display: flex;
+    color: red;
+}
+
+.formato-div{
+    display: flex;
+    justify-content: center;
+}
+
+.delete{
+border: none;
+background: none;
+transition: 0.5s;
+}
+.delete:hover{
+    background: red;
+    border: solid;
+}
+
+.nombre-border{
+border-bottom:solid green;
+}
+
+
+
+.border-black{
+    border-bottom: solid black;
+}
+
+.div-input{
+    display: flex;
+    flex-direction: column;
+}
+
+.displaynone{
+    display: none;
+}
+.displayblock{
+display: block;
+}
+
+@media (min-width: 640px) {
+    #formulario {
+      width: 50%;
+    }
+  }

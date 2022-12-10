@@ -1,0 +1,14 @@
+{
+  "Todos": [
+    {
+      "Nombre": "Gabriel Garcia ",
+      "Telefono": " 412-2110509",
+      "id": 1
+    },
+    {
+      "Nombre": "Alexander Gomez ",
+      "Telefono": "424-5698745",
+      "id": 3
+    }
+  ]
+}
