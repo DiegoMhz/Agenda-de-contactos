@@ -3,6 +3,15 @@ const emailInput = document.querySelector('#email-input');
 const passwordInput = document.querySelector('#password-input');
 const matchInput = document.querySelector('#match-input');
 const formBtn = document.querySelector('#form-btn');
+const menuMobile = document.querySelector('#menu-mobile');
+const menuBar = document.querySelector('#menu-bar');
+const menuIcon = document.querySelector('#menu-icon');
+
+menuIcon.addEventListener('click', e => {
+    console.log('yes');
+    menuBar.classList.toggle('hidden')
+    menuMobile.classList.toggle('show');
+});
 
 let emailValidation = false;
 let passwordValidation = false;

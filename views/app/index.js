@@ -4,21 +4,28 @@ const inputNombre = document.querySelector('#nombre');
 const inputTelefono = document.querySelector('#telefono');
 const lista = document.querySelector('#lista');
 const formato = document.querySelector('.formato');
-// BOTONES
 const btnCrear = document.querySelector('#boton-crear');
-// Editar
 const btnSiEdit =  document.querySelector('#si-edit');
 console.log(btnSiEdit);
 // REGEX
 let regex = /([0-9]){3}-[0-9]{7}$/;
 let nombre= /^[a-zA-Z0-9 ]{0,40}$/;
 let reg = /([0-9]){3}-[0-9]{7}$/;
-// TEXTO 
+
 const textoEdit = document.querySelector('#texto-edit');
 const textoContacto = document.querySelector('#texto-contacto');
+const menuMobile = document.querySelector('#menu-mobile');
+const menuBar = document.querySelector('#menu-bar');
+const menuIcon = document.querySelector('#menu-icon');
+
+menuIcon.addEventListener('click', e => {
+    console.log('yes');
+    menuBar.classList.toggle('hidden')
+    menuMobile.classList.toggle('show');
+});
+
 textoEdit.classList.add('displaynone')
 btnSiEdit.classList.add('displaynone')
-
 // CERRAR SESION
 const logoutBtn = document.querySelector('#logout-btn')
 logoutBtn.addEventListener('click', async e => {
