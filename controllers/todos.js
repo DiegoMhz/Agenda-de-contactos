@@ -1,22 +1,25 @@
 const todosRouter = require('express').Router();
-const User = require('../models/user');
-const Todo = require('../models/todo');
+const Todo = require('../models/todo'); // Asegúrate de que estás importando los modelos adecuados
 
 todosRouter.post('/', async (request, response) => {
     const { user } = request;
     if (!user) {
         return response.sendStatus(401);
     }
-    const { text } = request.body;
-    const {telefono}=request.body;
-    console.log(telefono);
-    const newTodo = new Todo({
-        telefono,
-        text,
-        user: user._id
-    });
-    const savedTodo = await newTodo.save();
-    response.status(201).json(savedTodo);
+    const { text, telefono } = request.body;
+
+    try {
+        const newTodo = await Todo.create({
+            text,
+            telefono,
+            userId: user.id
+        });
+
+        response.status(201).json(newTodo);
+    } catch (error) {
+        console.error(error);
+        response.status(500).json({ error: 'Error al crear un nuevo Todo' });
+    }
 });
 
 todosRouter.get('/', async (request, response) => {
@@ -24,33 +27,51 @@ todosRouter.get('/', async (request, response) => {
     if (!user) {
         return response.sendStatus(401);
     }
-    const todos = await Todo.find({ user: user._id });
-    response.status(200).json(todos);
+
+    try {
+        const todos = await Todo.find({ userId: user.id });
+        response.status(200).json(todos);
+    } catch (error) {
+        console.error(error);
+        response.status(500).json({ error: 'Error al obtener los Todos' });
+    }
 });
 
 todosRouter.delete('/:id', async (request, response) => {
     const { user } = request;
+    const todoId = request.params.id;
     console.log(request.params.id);
     if (!user) {
         return response.sendStatus(401);
     }
-    await Todo.findByIdAndDelete(request.params.id);
-    response.status(204);
+
+    try {
+        await Todo.findOneAndDelete({ _id: todoId })
+        response.status(204).send();
+    } catch (error) {
+        console.error(error);
+        response.status(500).json({ error: 'Error al eliminar el Todo' });
+    }
 });
 
 todosRouter.patch('/:id', async (request, response) => {
     const { user } = request;
+    const todoId = request.params.id;
+
     if (!user) {
         return response.sendStatus(401);
     }
-    console.log(request.body);
-    const { telefono } = request.body;
-    const { text } = request.body;
-    await Todo.findByIdAndUpdate(request.params.id, {text: text,
-    telefono: telefono });
-    response.sendStatus(200);
-    console.log(telefono, text);
-    
+
+    const { text, telefono } = request.body;
+
+    try {
+        await Todo.findOneAndUpdate({ id: todoId }, { text, telefono });
+        response.sendStatus(200);
+    } catch (error) {
+        console.error(error);
+        response.status(500).json({ error: 'Error al actualizar el Todo' });
+    }
 });
 
 module.exports = todosRouter;
+

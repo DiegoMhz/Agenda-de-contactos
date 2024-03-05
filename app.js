@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express')
 const app = express();
-const mongoose = require('mongoose');
 const patch = require('path');
 const cors = require('cors');
 const usersRouter = require('./controllers/users');
@@ -11,16 +10,21 @@ const auth = require('./middleware/auth');
 const cookieParser = require('cookie-parser');
 const logoutRouter = require('./controllers/logout');
 const morgan = require('morgan');
-(async () => {
+const mongoose = require('mongoose');
 
-    try {
+const conexion = async () => {
+     try {
         await mongoose.connect(process.env.MONGO_URI_TEST);
-        console.log('Conectado a Mongo DB');
+        console.log('Conectado a MongoDB');
     } catch (error) {
         console.log(error);
     }
+}
 
-})();
+conexion()
+
+
+
 
 // MIDDLEWARES
 app.use(cors());
@@ -34,6 +38,7 @@ app.use('/api/login', loginRouter);
 app.use('/api/todos', auth, todosRouter);
 app.use('/api/logout', logoutRouter);
 // FRONT END
+app.use('/styles', express.static(patch.join(__dirname, 'src')));
 app.use('/', express.static(patch.join(__dirname, 'views', 'home')));
 app.use('/signup', express.static(patch.join(__dirname, 'views', 'registro')));
 app.use('/app/:id', express.static(patch.join(__dirname, 'views', 'app')));

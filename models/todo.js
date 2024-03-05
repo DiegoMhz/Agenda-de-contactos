@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const todosSchema = new mongoose.Schema({
+const todoSchema = new mongoose.Schema({
     text: String,
     telefono: String,
     user: {
@@ -9,7 +9,7 @@ const todosSchema = new mongoose.Schema({
     }
 });
 
-todosSchema.set('toJSON', {
+todoSchema.set('toJSON', {
     transform: (document, returnedObject) => {
         returnedObject.id = returnedObject._id.toString();
         delete returnedObject._id;
@@ -17,6 +17,7 @@ todosSchema.set('toJSON', {
     }
 });
 
-const Todo = mongoose.model('Todo', todosSchema);
+const Todo = mongoose.model('Todo', todoSchema);
 
 module.exports = Todo;
+

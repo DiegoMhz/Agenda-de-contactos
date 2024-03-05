@@ -143,11 +143,10 @@ display: none;
 .delete{
 border: none;
 background: none;
-transition: 0.5s;
+transition: all 0.3s ease-in-out;
 }
 .delete:hover{
     background: red;
-    border: solid;
 }
 
 .nombre-border{
